@@ -6,7 +6,8 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 import "../style/sale.css"
 import data from "../data.json";
-import CardCustom from '../component/cardCustom';
+import CurrencyFormat from '../util/currency';
+import CardCustom from '../commonComponent/cardCustom';
 
 const eventTopic = {
   color: "#808B96",
@@ -78,7 +79,7 @@ export default function Sale() {
           Total Sales(THB)
         </Typography>
         <Typography sx={saleTotal}>
-          {data.totalSale.total}
+          {CurrencyFormat(data.totalSale.total)}
         </Typography>
         <Chip 
           label={
@@ -102,7 +103,7 @@ export default function Sale() {
       <Divider style={{margin: "10px 0"}}></Divider>
       <Grid container className="sale-content">
         <Typography variant="body2" sx={eventContent}>
-          Platform fee {mobile && <br/>} (VAT incl.)
+          Platform fee (VAT incl.)
         </Typography>
         {mobile && <br/>}
         <Typography variant="body2" sx={eventContent}>
@@ -111,7 +112,7 @@ export default function Sale() {
       </Grid>
       <Grid container className="sale-content">
         <Typography variant="body2" sx={eventContent}>
-          Payment fee {mobile && <br/>} (VAT incl.)
+          Payment fee (VAT incl.)
         </Typography>
         {mobile && <br/>}
         <Typography variant="body2" sx={eventContent}>

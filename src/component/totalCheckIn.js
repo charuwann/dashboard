@@ -3,7 +3,8 @@ import { Typography, Grid, Divider } from '@mui/material';
 import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 
 import data from "../data.json";
-import CardCustom from '../component/cardCustom';
+import CurrencyFormat from "../util/currency";
+import CardCustom from '../commonComponent/cardCustom';
 
 const eventTopic = {
   color: "#808B96",
@@ -43,7 +44,7 @@ export default function TotalCheckIn() {
             Total Check-in
           </Typography>
           <Typography sx={saleTotal}>
-          {data.ticket.checkIn} {!checkDivider ? '/' : <Divider />} {data.ticket.totalCheckIn}
+          {CurrencyFormat(data.ticket.checkIn)} {!checkDivider ? '/' : <Divider />} {CurrencyFormat(data.ticket.totalCheckIn)}
           </Typography>
         </Grid> 
       }

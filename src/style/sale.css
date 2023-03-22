@@ -21,7 +21,7 @@
   }
 
   .sale-content > p {
-    font-size: 6vw;
+    font-size: 5vw;
   }
 }
 
@@ -30,6 +30,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px){
+  .sale-content > p {
+    font-size: 2vw;
+  }
 }
 
 @media screen and (max-width: 250px) {

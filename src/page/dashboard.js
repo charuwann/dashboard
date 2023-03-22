@@ -3,13 +3,13 @@ import "../style/dashboard.css"
 import { styled } from '@mui/material/styles';
 import { Grid, Container } from '@mui/material';
 
-import Event from './event';
-import Sale from './sale';
-import General from './general';
-import TotalOrder from './totalOrder';
-import TotalCheckIn from './totalCheckIn';
-import TicketChart from './ticketChart';
-import AdmissionChart from './AdmissionChart';
+import Event from '../component/event';
+import Sale from '../component/sale';
+import General from '../component/general';
+import TotalOrder from '../component/totalOrder';
+import TotalCheckIn from '../component/totalCheckIn';
+import TicketChart from '../component/ticketChart';
+import AdmissionChart from '../component/AdmissionChart';
 
 
 const StyledRoot = styled('div')({
@@ -29,6 +29,13 @@ const Main = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function DashboardLayout() {
+  const price = 100000;
+
+  // Format the price above to USD using the locale, style, and currency.
+  let USDollar = new Intl.NumberFormat().format(price);
+
+  console.log(USDollar);
+  // The formated version of 14340 is $14,340.00
   return (
     <StyledRoot className="App">
       <Main className="main">

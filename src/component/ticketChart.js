@@ -1,12 +1,12 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Typography, Divider, Grid, Stack } from '@mui/material';
-import CardCustom from '../component/cardCustom';
+import CardCustom from '../commonComponent/cardCustom';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 
 import "../style/ticketChart.css";
 import data from "../data.json";
-import CircleProgressCustom from "../component/circleProgress";
-import LinearProgressCustom from "../component/LinearProgressCustom";
+import CircleProgressCustom from "../commonComponent/circleProgress";
+import LinearProgressCustom from "../commonComponent/LinearProgressCustom";
 
 const eventTopic = {
   fontWeight: "bolder",

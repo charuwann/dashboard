@@ -3,7 +3,8 @@ import { Typography, Grid } from '@mui/material';
 import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 
 import data from "../data.json";
-import CardCustom from '../component/cardCustom';
+import CurrencyFormat from "../util/currency";
+import CardCustom from '../commonComponent/cardCustom';
 // ----------------------------------------------------------------------
 
 const eventTopic = {
@@ -52,7 +53,7 @@ export default function TotalOrder() {
             Total Orders
           </Typography>
           <Typography sx={saleTotal}>
-            {data.ticket.order}
+            {CurrencyFormat(data.ticket.order)}
           </Typography>
         </Grid> 
       }

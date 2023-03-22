@@ -5,7 +5,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import "../style/event.css"
 import EventImg from "../images/event.jpg";
 import data from "../data.json";
-import CardCustom from '../component/cardCustom';
+import CardCustom from '../commonComponent/cardCustom';
 
 const eventTopic = {
   fontWeight: 600,

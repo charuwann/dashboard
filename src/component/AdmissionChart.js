@@ -4,9 +4,9 @@ import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 
 import "../style/ticketChart.css";
 import data from "../data.json";
-import CardCustom from '../component/cardCustom';
-import CircleProgressCustom from "../component/circleProgress";
-import LinearProgressCustom from "../component/LinearProgressCustom";
+import CardCustom from '../commonComponent/cardCustom';
+import CircleProgressCustom from "../commonComponent/circleProgress";
+import LinearProgressCustom from "../commonComponent/LinearProgressCustom";
 
 const eventTopic = {
   fontWeight: "bolder",
