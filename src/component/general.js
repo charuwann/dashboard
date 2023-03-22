@@ -9,7 +9,7 @@ import CurrencyFormat from '../util/currency';
 import CardCustom from '../commonComponent/cardCustom';
 
 const eventTopic = {
-  color: "#808B96",
+  color: "#A6ACAF",
   fontWeight: 500,
   fontSize: "1.1rem",
   display: "flex",
@@ -30,6 +30,7 @@ const icon = {
 const saleTotal = {
   fontWeight: "bolder",
   fontSize: "1.8em",
+  fontFamily: "Kanit-Bold"
 }
 
 const saleGrowth = {
@@ -46,13 +47,13 @@ const label = {
 }
 
 export default function General() {
-  const mobile = useMediaQuery('(max-width:300px)');
+  const isMobile = useMediaQuery('(max-width:300px)');
   return (
     <CardCustom content={
       <Grid container direction="column"  justifyContent="center" alignItems="center">
-        {mobile && <ConfirmationNumberIcon sx={icon}/>}        
+        {isMobile && <ConfirmationNumberIcon sx={icon}/>}        
         <Typography sx={eventTopic}>
-          {!mobile && <ConfirmationNumberIcon sx={icon}/>}
+          {!isMobile && <ConfirmationNumberIcon sx={icon}/>}
           Total Ticket Sold
         </Typography>
         <Typography sx={saleTotal}>
@@ -63,12 +64,12 @@ export default function General() {
             <div>
              <Typography sx={label}>
               {
-                !mobile && data.ticket.growthDirection === "up" ?
-                <><TrendingUpIcon /> + </>
+                !isMobile && data.ticket.growthDirection === "up" ?
+                <><TrendingUpIcon /><span style={{marginLeft: "5px"}}>+</span></>
                 : ""
               }
-              {data.ticket.growth} 
-              {!mobile && `from last week`}
+              <span style={{margin: "0 5px"}}>{data.ticket.growth}</span>
+              {!isMobile && `from last week`}
               </Typography>
             </div>
           }

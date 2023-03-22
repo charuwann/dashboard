@@ -10,13 +10,14 @@ import CardCustom from '../commonComponent/cardCustom';
 const eventTopic = {
   fontWeight: 600,
   fontSize: "1.3rem",
-  margin: "20px 0 0 0"
+  margin: "20px 0 0 0",
+  color: "#9B59B6",
 }
 
 const eventContent = {
   fontWeight: 500,
   fontSize: "0.9rem",
-  color: "#808B96",
+  color: "#A6ACAF",
   textAlign: "left",
   display: "flex",
   alignItems: "start",
@@ -26,7 +27,7 @@ const eventContent = {
 const eventSell = {
   fontWeight: 500,
   fontSize: "0.9rem",
-  color: "#808B96",
+  color: "#A6ACAF",
   textAlign: "center",
   display: "flex",
   alignItems: "center",
@@ -35,7 +36,7 @@ const eventSell = {
 
 const eventSellDate = {
   fontWeight: 500,
-  fontSize: "0.9rem",
+  fontSize: "1rem",
   textAlign: "center",
   display: "flex",
   alignItems: "center",
@@ -51,9 +52,9 @@ export default function Event() {
   return (
     <CardCustom content={
       <>
-      <Grid style={{marginTop: "40px"}} container justifyContent="center">
+      <Grid style={{marginTop: "20px"}} container justifyContent="center">
         <CardMedia
-          sx={{ height: 100, borderRadius: "10px", width: 120}}
+          sx={{ height: 120, borderRadius: "10px", width: 120}}
           image={EventImg}
         />
       </Grid>

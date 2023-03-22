@@ -15,7 +15,7 @@
   padding: 0 10px;
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 350px) {
   .sale-content {
     justify-content: center;
   }

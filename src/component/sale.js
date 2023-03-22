@@ -1,16 +1,16 @@
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Typography, Grid, Divider } from '@mui/material';
-import StarRateIcon from '@mui/icons-material/StarRate';
-import Chip from '@mui/material/Chip';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Typography, Grid, Divider } from "@mui/material";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import Chip from "@mui/material/Chip";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 import "../style/sale.css"
 import data from "../data.json";
-import CurrencyFormat from '../util/currency';
-import CardCustom from '../commonComponent/cardCustom';
+import CurrencyFormat from "../util/currency";
+import CardCustom from "../commonComponent/cardCustom";
 
 const eventTopic = {
-  color: "#808B96",
+  color: "#A6ACAF",
   fontWeight: 500,
   fontSize: "1.1rem",
   margin: "20px 0 0 0",
@@ -22,7 +22,7 @@ const eventTopic = {
 const eventContent = {
   fontWeight: 500,
   fontSize: "1rem",
-  color: "#808B96",
+  color: "#A6ACAF",
   textAlign: "left",
   display: "flex",
   alignItems: "center"
@@ -38,7 +38,7 @@ const icon = {
   marginRight: "5px"
 }
 
-const iconMobile = {
+const iconisMobile = {
   color: "#F1C40F",
   background: "#F9E79F",
   borderRadius: "50%",
@@ -50,7 +50,8 @@ const iconMobile = {
 const saleTotal = {
   fontWeight: "bolder",
   fontSize: "1.8em",
-  lineHeight: 2
+  lineHeight: 2,
+  fontFamily: "Kanit-Bold"
 }
 
 const saleGrowth = {
@@ -68,14 +69,14 @@ const label = {
 }
 
 export default function Sale() {
-  const mobile = useMediaQuery('(max-width:300px)');
+  const isMobile = useMediaQuery("(max-width:300px)");
   return (
     <CardCustom content={
       <>
       <Grid style={{marginTop: "40px"}} container direction="column"  justifyContent="center" alignItems="center">
-        {mobile && <StarRateIcon sx={iconMobile}/>}        
+        {isMobile && <StarRateIcon sx={iconisMobile}/>}        
         <Typography variant="h5" sx={eventTopic}>
-          {!mobile && <StarRateIcon sx={icon}/>}
+          {!isMobile && <StarRateIcon sx={icon}/>}
           Total Sales(THB)
         </Typography>
         <Typography sx={saleTotal}>
@@ -86,13 +87,13 @@ export default function Sale() {
             <div>
              <Typography sx={label}>
               {
-                !mobile && data.totalSale.growthDirection === "up" ?
-                <><TrendingUpIcon /> +</>
+                !isMobile && data.totalSale.growthDirection === "up" ?
+                <><TrendingUpIcon /><span style={{marginLeft: "5px"}}>+</span></>
                 : ""
               }
-              {data.totalSale.growth}
+              <span style={{margin: "0 5px"}}>{data.totalSale.growth}</span>
               {
-                !mobile && `from last week`
+                !isMobile && `from last week`
               }
               </Typography>
             </div>
@@ -105,18 +106,16 @@ export default function Sale() {
         <Typography variant="body2" sx={eventContent}>
           Platform fee (VAT incl.)
         </Typography>
-        {mobile && <br/>}
         <Typography variant="body2" sx={eventContent}>
-          {data.totalSale.plateformFee}
+          {CurrencyFormat(data.totalSale.plateformFee)}
         </Typography>
       </Grid>
       <Grid container className="sale-content">
         <Typography variant="body2" sx={eventContent}>
           Payment fee (VAT incl.)
         </Typography>
-        {mobile && <br/>}
         <Typography variant="body2" sx={eventContent}>
-          {data.totalSale.paymentFee}
+          {CurrencyFormat(data.totalSale.paymentFee)}
         </Typography>
       </Grid>
       <Divider style={{margin: "10px 0"}}></Divider>
@@ -125,7 +124,7 @@ export default function Sale() {
           Net Sales
         </Typography>
         <Typography variant="body2" sx={eventContent}>
-          {data.totalSale.netSale}
+          {CurrencyFormat(data.totalSale.netSale)}
         </Typography>
       </Grid>
       </>

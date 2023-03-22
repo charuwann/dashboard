@@ -1,7 +1,7 @@
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Typography, Divider, Grid, Stack } from '@mui/material';
-import CardCustom from '../commonComponent/cardCustom';
-import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Typography, Divider, Grid, Stack } from "@mui/material";
+import CardCustom from "../commonComponent/cardCustom";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 
 import "../style/ticketChart.css";
 import data from "../data.json";
@@ -41,7 +41,7 @@ const totalSubtStyle = {
 }
 
 function TicketChart() {
-  const isMobile = useMediaQuery('(max-width:300px)');
+  const isMobile = useMediaQuery("(max-width:300px)");
   const ticketData = data.ticketData;
   const totalPercent = Math.round((ticketData.sold/ticketData.total)*100)
   return (
@@ -69,7 +69,7 @@ function TicketChart() {
             </div>
           </Grid>
           <Grid item lg={12} xl={8}>
-            <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
+            <Stack sx={{ width: "100%", color: "grey.500" }} spacing={2}>
               <LinearProgressCustom
                 color={"#0C339B"}
                 valuePercent={(ticketData.generalAdmission/ticketData.generalAdmissionTotal)*100}

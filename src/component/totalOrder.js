@@ -1,14 +1,13 @@
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Typography, Grid } from '@mui/material';
-import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Typography, Grid } from "@mui/material";
+import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 
 import data from "../data.json";
 import CurrencyFormat from "../util/currency";
-import CardCustom from '../commonComponent/cardCustom';
-// ----------------------------------------------------------------------
+import CardCustom from "../commonComponent/cardCustom";
 
 const eventTopic = {
-  color: "#808B96",
+  color: "#A6ACAF",
   fontWeight: 500,
   fontSize: "1.1rem",
   display: "flex",
@@ -28,6 +27,7 @@ const icon = {
 const saleTotal = {
   fontWeight: "bolder",
   fontSize: "1.8em",
+  fontFamily: "Kanit-Bold"
 }
 
 const iconBg = {
@@ -42,14 +42,14 @@ const iconBg = {
 }
 
 export default function TotalOrder() {
-  const mobile = useMediaQuery('(max-width:300px)');
+  const isMobile = useMediaQuery("(max-width:300px)");
   return (
     <CardCustom
       content={
         <Grid container direction="column"  justifyContent="center" alignItems="center">
-          {mobile && <div style={iconBg}><ListOutlinedIcon sx={icon}/></div>}
+          {isMobile && <div style={iconBg}><ListOutlinedIcon sx={icon}/></div>}
           <Typography sx={eventTopic}>
-            {!mobile && <div style={iconBg}><ListOutlinedIcon sx={icon}/></div>}
+            {!isMobile && <div style={iconBg}><ListOutlinedIcon sx={icon}/></div>}
             Total Orders
           </Typography>
           <Typography sx={saleTotal}>

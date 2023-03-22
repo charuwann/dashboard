@@ -10,7 +10,7 @@ export default function CircleProgressCustom({percentage, colorStart, colorStop,
           value={percentage}
           styles={{
             path: { 
-              strokeLinecap: 'round',              
+              strokeLinecap: "round",              
               stroke: `url(#${idCSS})`, height: "90%" 
             },
             trail: {

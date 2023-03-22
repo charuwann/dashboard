@@ -1,8 +1,33 @@
 .App {
   text-align: center;
   background-color: #F9FAFB;
-  font-family: inherit;
 }
+
+body {
+  font-family: Kanit;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(../src/asset/Prompt/Prompt-Medium.ttf);
+}
+
+@font-face {
+  font-family: Kanit;
+  src: url(../src/asset/Kanit/Kanit-Regular.ttf);
+}
+
+@font-face {
+  font-family: Kanit-Bold;
+  src: url(../src/asset/Kanit/Kanit-Bold.ttf);
+}
+
+@font-face {
+  font-family: Kanit-Medium;
+  src: url(../src/asset/Kanit/Kanit-Medium.ttf);
+}
+
+
 
 /* ################ */
 .center {

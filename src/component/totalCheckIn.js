@@ -1,13 +1,13 @@
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Typography, Grid, Divider } from '@mui/material';
-import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Typography, Grid } from "@mui/material";
+import WhereToVoteIcon from "@mui/icons-material/WhereToVote";
 
 import data from "../data.json";
 import CurrencyFormat from "../util/currency";
-import CardCustom from '../commonComponent/cardCustom';
+import CardCustom from "../commonComponent/cardCustom";
 
 const eventTopic = {
-  color: "#808B96",
+  color: "#A6ACAF",
   fontWeight: 500,
   fontSize: "1.1rem",
   display: "flex",
@@ -18,7 +18,8 @@ const eventTopic = {
 const saleTotal = {
   fontWeight: "bolder",
   fontSize: "1.8em",
-  lineHeight: 2
+  lineHeight: 2,
+  fontFamily: "Kanit-Bold"
 }
 
 const icon = {
@@ -32,19 +33,19 @@ const icon = {
 }
 
 export default function TotalCheckIn() {
-  const mobile = useMediaQuery(`(max-width: 300px)`);
+  const isMobile = useMediaQuery(`(max-width: 300px)`);
   const checkDivider = useMediaQuery(`(max-width: 630px)`);
   return (
     <CardCustom
       content={
         <Grid container direction="column"  justifyContent="center" alignItems="center">
-          {mobile && <WhereToVoteIcon sx={icon}/>}
+          {isMobile && <WhereToVoteIcon sx={icon}/>}
           <Typography sx={eventTopic}>
-            {!mobile && <WhereToVoteIcon sx={icon}/>}
+            {!isMobile && <WhereToVoteIcon sx={icon}/>}
             Total Check-in
           </Typography>
           <Typography sx={saleTotal}>
-          {CurrencyFormat(data.ticket.checkIn)} {!checkDivider ? '/' : <Divider />} {CurrencyFormat(data.ticket.totalCheckIn)}
+          {CurrencyFormat(data.ticket.checkIn)} {!checkDivider ? "/" : <span><br/>/</span>} {CurrencyFormat(data.ticket.totalCheckIn)}
           </Typography>
         </Grid> 
       }
