@@ -1,0 +1,39 @@
+.text-growth {
+  font-size: 1rem;
+}
+
+@media  (max-width: 400px) {
+  .text-growth > p {
+    font-size: 5vw;
+  }
+}
+
+.sale-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 340px) {
+  .sale-content {
+    justify-content: center;
+  }
+
+  .sale-content > p {
+    font-size: 6vw;
+  }
+}
+
+.sale-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 250px) {
+  .sale-footer {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "event": {
+    "eventName": "Event Name",
+    "eventdate": "Sat 29 April 2023 12:00",
+    "location": "Lakeside Muangthong Thani",
+    "sellingStart": "1  April 2022",
+    "sellingEnd": "15 April 2022"
+  },
+  "totalSale": {
+    "total": 100000,
+    "growth": "11%",
+    "growthDirection": "up",
+    "plateformFee": 500000,
+    "paymentFee": 300000,
+    "netSale": 9000000
+  },
+  "ticket": {
+    "sold": 3000000,
+    "growth": "25%",
+    "growthDirection": "up",
+    "order": 100000,
+    "checkIn": 500000,
+    "totalCheckIn": 600000
+  },
+  "ticketData": {
+    "total": 100,
+    "sold": 62,
+    "generalAdmission": 4,
+    "generalAdmissionTotal": 20,
+    "vip": 15,
+    "vipTotal": 20,
+    "vvip": 12,
+    "vvipTotal": 20,
+    "vvip2": 3,
+    "vvip2Total": 20,
+    "vvip3": 8,
+    "vvip3Total": 20
+  },
+  "admission": {
+    "total": 100,
+    "sold": 55,
+    "generalAdmission": 4,
+    "generalAdmissionTotal": 20,
+    "vip": 15,
+    "vipTotal": 20,
+    "vvip": 12,
+    "vvipTotal": 20,
+    "vvip2": 3,
+    "vvip2Total": 20,
+    "vvip3": 8,
+    "vvip3Total": 20
+  }
+}
