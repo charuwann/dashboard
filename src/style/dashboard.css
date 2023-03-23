@@ -25,3 +25,7 @@
     padding: 0 15%;
   }
 }
+
+.animate {
+  transition: all 250ms;
+}

@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Typography, Grid } from "@mui/material";
 import WhereToVoteIcon from "@mui/icons-material/WhereToVote";
 
-import data from "../data.json";
+import dataJson from "../data.json";
 import CurrencyFormat from "../util/currency";
 import CardCustom from "../commonComponent/cardCustom";
+import Loading from "../commonComponent/loading";
 
 const eventTopic = {
   color: "#A6ACAF",
@@ -35,6 +37,17 @@ const icon = {
 export default function TotalCheckIn() {
   const isMobile = useMediaQuery(`(max-width: 300px)`);
   const checkDivider = useMediaQuery(`(max-width: 630px)`);
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setData(() => dataJson);
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   return (
     <CardCustom
       content={
@@ -44,9 +57,13 @@ export default function TotalCheckIn() {
             {!isMobile && <WhereToVoteIcon sx={icon}/>}
             Total Check-in
           </Typography>
-          <Typography sx={saleTotal}>
-          {CurrencyFormat(data.ticket.checkIn)} {!checkDivider ? "/" : <span><br/>/</span>} {CurrencyFormat(data.ticket.totalCheckIn)}
-          </Typography>
+          {
+            data ? 
+            <Typography sx={saleTotal}>
+            {CurrencyFormat(data.ticket.checkIn)} {!checkDivider ? "/" : <span><br/>/</span>} {CurrencyFormat(data.ticket.totalCheckIn)}
+            </Typography>
+            : <Loading height="15px" width="80%" margin="20px"/>
+          }
         </Grid> 
       }
     />

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Typography, Divider, Grid, Stack } from '@mui/material';
 import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
@@ -7,6 +8,7 @@ import data from "../data.json";
 import CardCustom from '../commonComponent/cardCustom';
 import CircleProgressCustom from "../commonComponent/circleProgress";
 import LinearProgressCustom from "../commonComponent/LinearProgressCustom";
+import Loading from "../commonComponent/loading";
 
 const eventTopic = {
   fontWeight: "bolder",
@@ -41,9 +43,20 @@ const totalSubtStyle = {
 }
 
 function AdmissionChart() {
+  const [totalPercent, setTotalPercent] = useState(0);
+  const [ticketData, setTicketData] = useState(data.admission);
   const isMobile = useMediaQuery('(max-width:300px)');
-  const ticketData = data.admission;
-  const totalPercent = Math.round((ticketData.sold/ticketData.total)*100);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTotalPercent(Math.round((data.admission.sold/data.admission.total)*100))
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <>
       <CardCustom content={
@@ -66,44 +79,48 @@ function AdmissionChart() {
                 idCSS="admission"
               />
               <Typography sx={totalPercentStyle}>{totalPercent}%</Typography>
-              <Typography sx={totalSubtStyle}>{ticketData.sold}/{ticketData.total}</Typography>
+              {
+                totalPercent ? 
+                <Typography sx={totalSubtStyle}>{ticketData?.sold}/{ticketData?.total}</Typography>
+                : <Loading height="8px" width="30%" margin="5px 0 0 50px"/>
+              }
             </div>
           </Grid>
           <Grid item lg={12} xl={8}>
             <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
               <LinearProgressCustom
                 color={"##CE4AF1"}
-                valuePercent={(ticketData.generalAdmission/ticketData.generalAdmissionTotal)*100}
-                item={ticketData.generalAdmission}
-                itemTotal={ticketData.generalAdmissionTotal}
+                valuePercent={(ticketData?.generalAdmission/ticketData?.generalAdmissionTotal)*100}
+                item={ticketData?.generalAdmission}
+                itemTotal={ticketData?.generalAdmissionTotal}
                 topic={"General Admission"}
               />
               <LinearProgressCustom
                 color={"#AAA0CE"}
-                valuePercent={(ticketData.vip/ticketData.vipTotal)*100}
-                item={ticketData.vip}
-                itemTotal={ticketData.vipTotal}
+                valuePercent={(ticketData?.vip/ticketData?.vipTotal)*100}
+                item={ticketData?.vip}
+                itemTotal={ticketData?.vipTotal}
                 topic={"VIP"}
               />
               <LinearProgressCustom
                 color={"#9AF1FD"}
-                valuePercent={(ticketData.vvip/ticketData.vvipTotal)*100}
-                item={ticketData.vvip}
-                itemTotal={ticketData.vvipTotal}
+                valuePercent={(ticketData?.vvip/ticketData?.vvipTotal)*100}
+                item={ticketData?.vvip}
+                itemTotal={ticketData?.vvipTotal}
                 topic={"VVIP"}
               />
               <LinearProgressCustom
                 color={"#C190C4"}
-                valuePercent={(ticketData.vvip2/ticketData.vvip2Total)*100}
-                item={ticketData.vvip2}
-                itemTotal={ticketData.vvip2Total}
+                valuePercent={(ticketData?.vvip2/ticketData?.vvip2Total)*100}
+                item={ticketData?.vvip2}
+                itemTotal={ticketData?.vvip2Total}
                 topic={"VVIP2"}
               />
               <LinearProgressCustom
                 color={"#E9CAEB"}
-                valuePercent={(ticketData.vvip3/ticketData.vvip3Total)*100}
-                item={ticketData.vvip3}
-                itemTotal={ticketData.vvip3Total}
+                valuePercent={(ticketData?.vvip3/ticketData?.vvip3Total)*100}
+                item={ticketData?.vvip3}
+                itemTotal={ticketData?.vvip3Total}
                 topic={"VVIP3"}
               />
             </Stack>

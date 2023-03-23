@@ -1,17 +1,20 @@
+import { useEffect, useState } from 'react';
 import { Typography, Grid, Divider, CardMedia } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 import "../style/event.css"
 import EventImg from "../images/event.jpg";
-import data from "../data.json";
+import dataJson from "../data.json";
 import CardCustom from '../commonComponent/cardCustom';
+import Loading from "../commonComponent/loading";
 
 const eventTopic = {
   fontWeight: 600,
   fontSize: "1.3rem",
   margin: "20px 0 0 0",
   color: "#9B59B6",
+  textAlign: "center"
 }
 
 const eventContent = {
@@ -49,6 +52,17 @@ const icon = {
 }
 
 export default function Event() {
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setData(() => dataJson);
+    }, 800);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   return (
     <CardCustom content={
       <>
@@ -58,29 +72,29 @@ export default function Event() {
           image={EventImg}
         />
       </Grid>
-      <Typography className="text-event-name" variant="h5" sx={eventTopic}>
-        {data.event.eventName}
+      <Typography className="center" variant="h5" sx={eventTopic}>
+        {data?.event?.eventName || <Loading width="50%" margin="15px"/>}
       </Typography>
       <Divider style={{margin: "10px 0"}}></Divider>
       <Grid style={{padding: "0 10px"}}>
         <Typography variant="body2" sx={eventContent}>
           <CalendarMonthIcon sx={icon} fontSize="small"/>
-          {data.event.eventdate}
+          {data?.event?.eventdate || <Loading />}
         </Typography>
         <Typography variant="body2" sx={eventContent}>
           <LocationOnIcon sx={icon} fontSize="small"/>
-          {data.event.location}
+          {data?.event?.location || <Loading />}
         </Typography>
       </Grid>
       <Divider style={{margin: "10px 0"}}></Divider>
       <Grid container className="event-footer" rowSpacing={2}>
         <Grid item >
           <Typography variant="subtitle2" sx={eventSell}>Selling Start</Typography>
-          <Typography variant="BUTTON" sx={eventSellDate}>{data.event.sellingStart}</Typography>
+          <Typography variant="BUTTON" sx={eventSellDate}>{data?.event?.sellingStart || <Loading />}</Typography>
         </Grid>
         <Grid item>
           <Typography variant="subtitle2" sx={eventSell}>Selling End</Typography>
-          <Typography variant="BUTTON" sx={eventSellDate}>{data.event.sellingEnd}</Typography>
+          <Typography variant="BUTTON" sx={eventSellDate}>{data?.event?.sellingEnd || <Loading />}</Typography>
         </Grid>
       </Grid>
     </>

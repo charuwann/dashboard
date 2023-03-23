@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Typography, Grid, Divider } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
@@ -5,9 +6,10 @@ import Chip from "@mui/material/Chip";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 import "../style/sale.css"
-import data from "../data.json";
+import dataJson from "../data.json";
 import CurrencyFormat from "../util/currency";
 import CardCustom from "../commonComponent/cardCustom";
+import Loading from "../commonComponent/loading";
 
 const eventTopic = {
   color: "#A6ACAF",
@@ -70,6 +72,17 @@ const label = {
 
 export default function Sale() {
   const isMobile = useMediaQuery("(max-width:300px)");
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setData(() => dataJson);
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   return (
     <CardCustom content={
       <>
@@ -79,53 +92,73 @@ export default function Sale() {
           {!isMobile && <StarRateIcon sx={icon}/>}
           Total Sales(THB)
         </Typography>
-        <Typography sx={saleTotal}>
-          {CurrencyFormat(data.totalSale.total)}
-        </Typography>
-        <Chip 
-          label={
-            <div>
-             <Typography sx={label}>
-              {
-                !isMobile && data.totalSale.growthDirection === "up" ?
-                <><TrendingUpIcon /><span style={{marginLeft: "5px"}}>+</span></>
-                : ""
+        {
+          data ?
+            <Typography sx={saleTotal}>
+              {CurrencyFormat(data?.totalSale?.total)}
+            </Typography>
+          : <Loading height="15px" width="60%" margin="20px"/>
+        }
+        {
+          data ? 
+            <Chip 
+              label={
+                <div>
+                <Typography sx={label}>
+                  {
+                    !isMobile && data?.totalSale?.growthDirection === "up" ?
+                    <><TrendingUpIcon /><span style={{marginLeft: "5px"}}>+</span></>
+                    : ""
+                  }
+                  <span style={{margin: "0 5px"}}>{data?.totalSale?.growth}</span>
+                  {
+                    !isMobile && `from last week`
+                  }
+                  </Typography>
+                </div>
               }
-              <span style={{margin: "0 5px"}}>{data.totalSale.growth}</span>
-              {
-                !isMobile && `from last week`
-              }
-              </Typography>
-            </div>
-          }
-          sx={saleGrowth}>
-        </Chip>
+              sx={saleGrowth}>
+            </Chip>
+          : <Loading height="20px" width="60%" margin="5px"/>
+        }
       </Grid> 
       <Divider style={{margin: "10px 0"}}></Divider>
       <Grid container className="sale-content">
         <Typography variant="body2" sx={eventContent}>
           Platform fee (VAT incl.)
         </Typography>
-        <Typography variant="body2" sx={eventContent}>
-          {CurrencyFormat(data.totalSale.plateformFee)}
-        </Typography>
+        {
+          data ? 
+          <Typography variant="body2" sx={eventContent}>
+            {CurrencyFormat(data?.totalSale?.plateformFee)}
+          </Typography>
+          : <Loading height="8px" width="30%" margin="5px"/>
+        }
       </Grid>
       <Grid container className="sale-content">
         <Typography variant="body2" sx={eventContent}>
           Payment fee (VAT incl.)
         </Typography>
-        <Typography variant="body2" sx={eventContent}>
-          {CurrencyFormat(data.totalSale.paymentFee)}
-        </Typography>
+        {
+          data ? 
+          <Typography variant="body2" sx={eventContent}>
+            {CurrencyFormat(data?.totalSale?.paymentFee)}
+          </Typography>
+          : <Loading height="8px" width="30%" margin="5px"/>
+        }
       </Grid>
       <Divider style={{margin: "10px 0"}}></Divider>
       <Grid container className="sale-footer">
         <Typography variant="body2" sx={eventContent}>
           Net Sales
         </Typography>
-        <Typography variant="body2" sx={eventContent}>
-          {CurrencyFormat(data.totalSale.netSale)}
-        </Typography>
+        {
+          data ? 
+          <Typography variant="body2" sx={eventContent}>
+            {CurrencyFormat(data?.totalSale?.netSale)}
+          </Typography>
+          : <Loading height="8px" width="30%" margin="5px"/>
+        }
       </Grid>
       </>
     }/>

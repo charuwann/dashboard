@@ -1,12 +1,14 @@
+import { useEffect, useState } from "react";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Typography, Grid } from '@mui/material';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import Chip from '@mui/material/Chip';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
-import data from "../data.json";
+import dataJson from "../data.json";
 import CurrencyFormat from '../util/currency';
 import CardCustom from '../commonComponent/cardCustom';
+import Loading from "../commonComponent/loading";
 
 const eventTopic = {
   color: "#A6ACAF",
@@ -48,6 +50,17 @@ const label = {
 
 export default function General() {
   const isMobile = useMediaQuery('(max-width:300px)');
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setData(() => dataJson);
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   return (
     <CardCustom content={
       <Grid container direction="column"  justifyContent="center" alignItems="center">
@@ -56,25 +69,33 @@ export default function General() {
           {!isMobile && <ConfirmationNumberIcon sx={icon}/>}
           Total Ticket Sold
         </Typography>
-        <Typography sx={saleTotal}>
-          {CurrencyFormat(data.ticket.sold)}
-        </Typography>
-        <Chip 
-          label={
-            <div>
-             <Typography sx={label}>
-              {
-                !isMobile && data.ticket.growthDirection === "up" ?
-                <><TrendingUpIcon /><span style={{marginLeft: "5px"}}>+</span></>
-                : ""
-              }
-              <span style={{margin: "0 5px"}}>{data.ticket.growth}</span>
-              {!isMobile && `from last week`}
-              </Typography>
-            </div>
-          }
-          sx={saleGrowth}>
-        </Chip>
+        {
+          data ?
+          <Typography sx={saleTotal}>
+            {CurrencyFormat(data.ticket.sold)}
+          </Typography>
+          :<Loading height="15px" width="60%" margin="10px"/>
+        }
+        {
+          data ? 
+          <Chip 
+            label={
+              <div>
+              <Typography sx={label}>
+                {
+                  !isMobile && data.ticket.growthDirection === "up" ?
+                  <><TrendingUpIcon /><span style={{marginLeft: "5px"}}>+</span></>
+                  : ""
+                }
+                <span style={{margin: "0 5px"}}>{data.ticket.growth}</span>
+                {!isMobile && `from last week`}
+                </Typography>
+              </div>
+            }
+            sx={saleGrowth}>
+          </Chip>
+          :<Loading height="20px" width="60%" margin="10px"/>
+        }
       </Grid> 
     }/>
   );

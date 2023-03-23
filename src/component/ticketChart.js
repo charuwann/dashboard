@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Typography, Divider, Grid, Stack } from "@mui/material";
 import CardCustom from "../commonComponent/cardCustom";
@@ -7,6 +8,7 @@ import "../style/ticketChart.css";
 import data from "../data.json";
 import CircleProgressCustom from "../commonComponent/circleProgress";
 import LinearProgressCustom from "../commonComponent/LinearProgressCustom";
+import Loading from "../commonComponent/loading";
 
 const eventTopic = {
   fontWeight: "bolder",
@@ -41,9 +43,14 @@ const totalSubtStyle = {
 }
 
 function TicketChart() {
+  const [totalPercent, setTotalPercent] = useState(0);
   const isMobile = useMediaQuery("(max-width:300px)");
   const ticketData = data.ticketData;
-  const totalPercent = Math.round((ticketData.sold/ticketData.total)*100)
+  useEffect(() => {
+    setTimeout(function(){
+      setTotalPercent(ticketData && Math.round((ticketData.sold/ticketData.total)*100))
+  },1000);
+  }, [])
   return (
     <>
       <CardCustom content={
@@ -65,7 +72,11 @@ function TicketChart() {
                 idCSS="ticketChart"
               />
               <Typography sx={totalPercentStyle}>{totalPercent}%</Typography>
-              <Typography sx={totalSubtStyle}>{ticketData.sold}/{ticketData.total}</Typography>
+              {
+                totalPercent ? 
+                <Typography sx={totalSubtStyle}>{ticketData.sold}/{ticketData.total}</Typography>
+                : <Loading height="8px" width="30%" margin="5px 0 0 50px"/>
+              }
             </div>
           </Grid>
           <Grid item lg={12} xl={8}>

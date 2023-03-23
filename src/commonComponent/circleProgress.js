@@ -1,4 +1,5 @@
-import { CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+// import ChangingProgressProvider from "./ChangingProgressProvider";
 import GradientSVG from "./gradientSVG";
 
 export default function CircleProgressCustom({percentage, colorStart, colorStop, idCSS}) {
@@ -10,6 +11,7 @@ export default function CircleProgressCustom({percentage, colorStart, colorStop,
           value={percentage}
           styles={{
             path: { 
+              transition: 'stroke-dashoffset 1s ease 0s',
               strokeLinecap: "round",              
               stroke: `url(#${idCSS})`, height: "90%" 
             },
@@ -17,7 +19,7 @@ export default function CircleProgressCustom({percentage, colorStart, colorStop,
               stroke: "#EEEEEE",
               strokeWidth: 6
             }
-          }}
+          }}          
         />
       </div>
   );

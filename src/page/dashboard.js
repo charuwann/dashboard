@@ -32,34 +32,34 @@ export default function DashboardLayout() {
       <Main className="main">
         <Container maxWidth="xl">
           <Grid container spacing={2} rowSpacing={3}>
-            <Grid container item xs={12} sm={6} md={6} lg={4}>
+              <Grid container item xs={12} sm={6} md={6} lg={4}>
                 <Grid item xs={12}>
                   <Event />
                 </Grid>
-                </Grid>
-                <Grid container item xs={12} sm={6} md={6} lg={4}>
-                  <Grid item xs={12}><Sale/></Grid>
-                </Grid>
-                <Grid 
-                  container
-                  item
-                  direction="row"
-                  xs={12} sm={6} md={6} lg={4}
-                  spacing={2} 
-                  rowSpacing={3}
-                >
-                  <Grid item xs={12}><General/></Grid>
-                  <Grid item xs={12}><TotalOrder/></Grid>
-                  <Grid item xs={12}><TotalCheckIn/></Grid>
-                </Grid>
-            <Grid container item spacing={2} rowSpacing={5}>
-              <Grid item md={6} sm={6} xs={12}>
-                <TicketChart />
               </Grid>
-              <Grid item md={6} sm={6} xs={12}>
-                <AdmissionChart />
+              <Grid container item xs={12} sm={6} md={6} lg={4}>
+                <Grid item xs={12}><Sale/></Grid>
               </Grid>
-            </Grid>
+              <Grid 
+                container
+                item
+                direction="row"
+                xs={12} sm={6} md={6} lg={4}
+                spacing={2} 
+                rowSpacing={3}
+              >
+                <Grid item xs={12}><General/></Grid>
+                <Grid item xs={12}><TotalOrder/></Grid>
+                <Grid item xs={12}><TotalCheckIn/></Grid>
+              </Grid>
+              <Grid container item spacing={2} rowSpacing={5}>
+                <Grid item md={6} sm={6} xs={12}>
+                  <TicketChart />
+                </Grid>
+                <Grid item md={6} sm={6} xs={12}>
+                  <AdmissionChart />
+                </Grid>
+              </Grid>
           </Grid>
         </Container>
       </Main>

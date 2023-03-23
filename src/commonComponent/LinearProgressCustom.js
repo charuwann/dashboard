@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Typography, Divider, Grid } from "@mui/material";
 import LinearProgress, { linearProgressClasses } from "@mui/material/LinearProgress";
+import Loading from "./loading";
 
 const topicStyle = {
   fontWeight: 600,
@@ -45,6 +47,21 @@ function LinearProgressCustom({color, valuePercent, item, itemTotal, topic}) {
     },
   }
 
+  const [progressbar, setProgressBar] = useState(0);
+  const [itemData, setTtemData] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgressBar(() => (valuePercent >= 100 ? 0 : valuePercent + 10));
+      setTtemData(itemTotal);
+    }, 800);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+
   return (<>
     <Grid container alignItems="center" justifyContent="space-between">
       <Grid item >
@@ -53,16 +70,17 @@ function LinearProgressCustom({color, valuePercent, item, itemTotal, topic}) {
         </Typography>
       </Grid>
       <Grid item xs={isMobile ? 12 : 0}>
-        { itemTotal && 
+        { itemData ?
             <Grid container alignItems="end">
               <Grid item><Typography sx={isMobile ? subMobile :sub}>{item}/{itemTotal}</Typography></Grid>
               <Divider sx={{margin: "0 6px"}} orientation="vertical" flexItem/>
               <Grid item><Typography sx={subPercent}>{Math.round(valuePercent)}%</Typography></Grid>
             </Grid>
+          : <Loading height="10px" width="50px" margin="5px"/>
         }
       </Grid>
     </Grid>
-    <LinearProgress sx={progress} variant="determinate" value={valuePercent}/>
+    <LinearProgress sx={progress} variant="determinate" value={progressbar}/>
   </>);
 }
 
