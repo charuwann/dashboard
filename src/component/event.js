@@ -67,34 +67,38 @@ export default function Event() {
     <CardCustom content={
       <>
       <Grid style={{marginTop: "20px"}} container justifyContent="center">
-        <CardMedia
-          sx={{ height: 120, borderRadius: "10px", width: 120}}
-          image={EventImg}
-        />
+        {
+          data ?
+          <CardMedia
+            sx={{ height: 120, borderRadius: "10px", width: 120}}
+            image={EventImg}
+          />
+          : <Loading height="120px" width="100px"/>
+        }
       </Grid>
       <Typography className="center" variant="h5" sx={eventTopic}>
-        {data?.event?.eventName || <Loading width="50%" margin="15px"/>}
+        {data?.event?.eventName || <Loading height="15px" width="50%" marginTop="15px"/>}
       </Typography>
       <Divider style={{margin: "10px 0"}}></Divider>
       <Grid style={{padding: "0 10px"}}>
         <Typography variant="body2" sx={eventContent}>
           <CalendarMonthIcon sx={icon} fontSize="small"/>
-          {data?.event?.eventdate || <Loading />}
+          {data?.event?.eventdate || <Loading margin="5px 0 0 0 "/>}
         </Typography>
         <Typography variant="body2" sx={eventContent}>
           <LocationOnIcon sx={icon} fontSize="small"/>
-          {data?.event?.location || <Loading />}
+          {data?.event?.location || <Loading margin="5px 0 0 0 "/>}
         </Typography>
       </Grid>
       <Divider style={{margin: "10px 0"}}></Divider>
       <Grid container className="event-footer" rowSpacing={2}>
         <Grid item >
           <Typography variant="subtitle2" sx={eventSell}>Selling Start</Typography>
-          <Typography variant="BUTTON" sx={eventSellDate}>{data?.event?.sellingStart || <Loading />}</Typography>
+          <Typography variant="BUTTON" sx={eventSellDate}>{data?.event?.sellingStart || <Loading marginTop="10px"/>}</Typography>
         </Grid>
         <Grid item>
           <Typography variant="subtitle2" sx={eventSell}>Selling End</Typography>
-          <Typography variant="BUTTON" sx={eventSellDate}>{data?.event?.sellingEnd || <Loading />}</Typography>
+          <Typography variant="BUTTON" sx={eventSellDate}>{data?.event?.sellingEnd || <Loading marginTop="10px"/>}</Typography>
         </Grid>
       </Grid>
     </>

@@ -49,7 +49,7 @@ function TicketChart() {
   useEffect(() => {
     setTimeout(function(){
       setTotalPercent(ticketData && Math.round((ticketData.sold/ticketData.total)*100))
-  },1000);
+  }, 800);
   }, [])
   return (
     <>

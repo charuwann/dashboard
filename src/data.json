@@ -4,7 +4,8 @@
     "eventdate": "Sat 29 April 2023 12:00",
     "location": "Lakeside Muangthong Thani",
     "sellingStart": "1 MAY 2022",
-    "sellingEnd": "15 APR 2023"
+    "sellingEnd": "15 APR 2023",
+    "image": "../images/event.jpg"
   },
   "totalSale": {
     "total": 100000,
